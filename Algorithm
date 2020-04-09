@@ -1,0 +1,53 @@
+
+## ALGORITHM FOR BRACKETS CHECKING PROGRAM USING A STACK 
+
+	INPUT Expression;
+	index = 0;
+	ERROR = FALSE;
+	
+	FOR Not End of Expression
+		
+		IF Expression[index] == '(' OR Expression[index] == '[' OR Expression[index] == '{'
+			THEN
+			
+			PUSH (STACK, Expression[index]);
+			index++;
+			CONTINUE;
+			
+		ELSE IF Expression[index] == ')' OR Expression[index] == ']' OR Expression[index] == '}'
+			THEN
+			
+			IF IS_EMPTY(STACK) 
+				THEN
+			
+				ERROR = TRUE;
+				BREAK;
+		
+			ELSE IF OPENNINGMATCH( STACKTOP(STACK), Expression[index]) == TRUE )
+				THEN
+			
+				index++;
+				POP(STACK);
+		
+			ELSE
+				ERROR = TRUE;
+				BREAK;
+			
+			END IF
+		END IF
+	END FOR
+	
+	IF !ERROR AND !IS_EMPTY(STACK)
+		THEN
+		
+		ERROR == TRUE
+	
+	END IF
+	
+	IF ERROR
+		OUTPUT "The given expression is not valid";
+	
+	ELSE
+		OUTPUT "The given expression is valid";
+		
+	END IF
